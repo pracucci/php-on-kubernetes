@@ -1,0 +1,21 @@
+version: '3.2'
+services:
+  nginx:
+    build:
+      context:    .
+      dockerfile: Dockerfile-nginx
+    image:      test-logging-nginx
+    depends_on:
+      - php
+    ports:
+      - "9080:9080"
+    links:
+      - php
+
+  php:
+    build:
+      context:    .
+      dockerfile: Dockerfile-php
+    image:      test-logging-php
+    expose:
+      - 9000

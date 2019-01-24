@@ -1,0 +1,18 @@
+FROM alpine:3.8
+
+# Install php-fpm
+RUN apk add --update --no-cache \
+    php7 \
+    php7-fpm
+
+# In-line edit the config files. Don't do this for your Docker images,
+# here we picked this approach to easily show what settings are edited.
+RUN sed -i -e 's/^;\?daemonize\s*=.*/daemonize = no/g'                          /etc/php7/php-fpm.conf && \
+    sed -i -e 's/^;\?error_log\s*=.*/error_log = \/proc\/self\/fd\/2/g'         /etc/php7/php-fpm.conf && \
+    sed -i -e 's/^;\?listen\s*=.*/listen = 0.0.0.0:9000/g'                      /etc/php7/php-fpm.d/www.conf && \
+    sed -i -e 's/^;\?catch_workers_output\s*=.*/catch_workers_output = yes/g'   /etc/php7/php-fpm.d/www.conf
+
+# Add application code
+ADD index.php /app/index.php
+
+CMD [ "php-fpm7", "--fpm-config", "/etc/php7/php-fpm.conf", "--php-ini", "/etc/php7/php.ini" ]

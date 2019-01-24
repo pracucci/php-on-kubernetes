@@ -7,11 +7,11 @@ This repository doesn't aim to provide a one-fits-all solution, but offering opt
 
 ## Application Logs
 
-For a comparison between the two approaches, please see the blog post:
+For a comparison between the two approaches, please see the blog post:<br />
 [PHP on Kubernetes: application logging via unix pipe](https://pracucci.com/php-on-kubernetes-application-logging-via-unix-pipe.html)
 
-1. Log to `php://stdout` or `php://stderr` and enable `catch_workers_output` in php-fpm<br />
+1. Option 1: log to `php://stdout` or `php://stderr` and enable `catch_workers_output` in php-fpm<br />
    See: [`app-log-php-fpm-via-catch-workers-output/`](app-log-php-fpm-via-catch-workers-output/)
 
-2. Log to unix pipe and tail it on PID 1<br />
+2. Option 2: log to unix pipe and tail it on PID 1<br />
    See: [`app-log-php-fpm-via-unix-pipe/`](app-log-php-fpm-via-unix-pipe/)

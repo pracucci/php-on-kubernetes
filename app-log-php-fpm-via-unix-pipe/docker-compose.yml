@@ -19,3 +19,18 @@ services:
     image:      test-logging-php
     expose:
       - 9000
+    volumes:
+      - logs:/var/log/shared
+
+  php-log-tail:
+    build:
+      context:    .
+      dockerfile: Dockerfile-php-log-tail
+    image:      test-logging-php-log-tail
+    volumes:
+      - logs:/var/log/shared
+
+volumes:
+    # Volume used to share the pipe between php app and tail (running
+    # in a sidecar container)
+    logs:

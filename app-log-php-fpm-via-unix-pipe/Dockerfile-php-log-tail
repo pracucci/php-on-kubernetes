@@ -1,0 +1,9 @@
+FROM alpine:3.8
+
+# Create the directory that will hold the (shared) unix pipe
+RUN mkdir /var/log/shared
+
+# Add bootstrap script
+ADD bootstrap-php-log-tail.sh /usr/local/bin/bootstrap-php-log-tail.sh
+
+CMD [ "/usr/local/bin/bootstrap-php-log-tail.sh" ]

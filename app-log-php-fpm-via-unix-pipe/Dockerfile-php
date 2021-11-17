@@ -14,7 +14,7 @@ RUN sed -i -e 's/^;\?daemonize\s*=.*/daemonize = no/g'                          
     sed -i -e 's/^;\?error_log\s*=.*/error_log = \/proc\/self\/fd\/2/g'         /etc/php7/php-fpm.conf && \
     sed -i -e 's/^;\?pid\s*=.*/pid = \/var\/run\/php-fpm.pid/g'                 /etc/php7/php-fpm.conf && \
     sed -i -e 's/^;\?listen\s*=.*/listen = 0.0.0.0:9000/g'                      /etc/php7/php-fpm.d/www.conf && \
-    sed -i -e 's/^;\?catch_workers_output\s*=.*/catch_workers_output = yes/g'   /etc/php7/php-fpm.d/www.conf
+    sed -i -e 's/^;\?catch_workers_output\s*=.*/catch_workers_output = no/g'   /etc/php7/php-fpm.d/www.conf
 
 # Add bootstrap script
 ADD bootstrap-php-fpm.sh /usr/local/bin/bootstrap-php-fpm.sh
